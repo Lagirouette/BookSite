@@ -37,11 +37,6 @@
         <div class="auth-image" role="img" aria-label="Bibliothèque remplie de livres"></div>
     </main>
 
-    <footer class="site-footer">
-        <a href="#">Politique de confidentialité</a>
-        <a href="#">Mentions légales</a>
-        <span>TomTroc©</span>
-        <strong>TT</strong>
-    </footer>
+    <?php require __DIR__ . '/../partials/footer.php'; ?>
 </body>
 </html>

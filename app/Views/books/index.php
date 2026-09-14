@@ -6,7 +6,7 @@
 	<title>Liste des livres</title>
 	<link rel="stylesheet" href="/assets/css/style.css">
 </head>
-<body>
+<body class="books-page">
 	<?php require __DIR__ . '/../partials/header.php'; ?>
 	<main class="page-shell books-content">
 		<div class="books-toolbar">
@@ -28,8 +28,8 @@
 
 						<h2><?= htmlspecialchars($book->getTitle(), ENT_QUOTES, 'UTF-8') ?></h2>
 
-						<?php if (!empty($book->getAuthor())): ?>
-							<p>Auteur : <?= htmlspecialchars($book->getAuthor(), ENT_QUOTES, 'UTF-8') ?></p>
+						<?php if (!empty($bookSellers[$book->getId()])): ?>
+							<p>Vendu par : <?= htmlspecialchars($bookSellers[$book->getId()], ENT_QUOTES, 'UTF-8') ?></p>
 						<?php endif; ?>
 					</a>
 				<?php endforeach; ?>

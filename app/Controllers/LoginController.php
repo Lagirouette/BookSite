@@ -1,11 +1,10 @@
 <?php
 namespace App\Controllers;
 
-use App\Core\Controller;
 use App\Models\User;
 use UserManager;
 
-class LoginController extends Controller
+class LoginController
 {
     public function index(): void
     {

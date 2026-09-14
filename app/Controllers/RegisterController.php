@@ -1,12 +1,11 @@
 <?php
 namespace App\Controllers;
 
-use App\Core\Controller;
 use App\Models\User;
 use PDOException;
 use UserManager;
 
-class RegisterController extends Controller
+class RegisterController
 {
     public function index(): void
     {

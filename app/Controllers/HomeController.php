@@ -1,10 +1,9 @@
 <?php
 namespace App\Controllers;
 
-use App\Core\Controller;
 use BookManager;
 
-class HomeController extends Controller
+class HomeController
 {
     public function index(): void
     {

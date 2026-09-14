@@ -1,15 +1,19 @@
 <?php
 namespace App\Controllers;
 
-use App\Core\Controller;
 use BookManager as GlobalBookManager;
 
-class BookController extends Controller
+class BookController
 {
     public function index()
     {
         $bookManager = new GlobalBookManager();
         $books = $bookManager->findAll();
+        $bookSellers = [];
+
+        foreach ($books as $book) {
+            $bookSellers[$book->getId()] = $bookManager->getUserNameByBookId($book->getId());
+        }
 
         require __DIR__ . '/../Views/books/index.php';
     }
