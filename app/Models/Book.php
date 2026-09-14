@@ -1,51 +1,85 @@
 <?php
-namespace App\Models;
 
-use PDO;
-
-class Book
+/**
+ * Classe Book : entité pure pour représenter un livre.
+ */
+class Book extends AbstractEntity
 {
-    private PDO $database;
+    private int $user_id = 0;
+    private string $title = '';
+    private string $author = '';
+    private string $image = '';
+    private string $description = '';
+    private string $status = 'available';
+    private string $created_at = '';
 
-    public function __construct()
+    public function setUserId(int $userId): void
     {
-        $config = require __DIR__ . '/../../config/database.php';
-
-        $dsn = sprintf(
-            'mysql:host=%s;dbname=%s;charset=%s',
-            $config['host'],
-            $config['dbname'],
-            $config['charset']
-        );
-
-        $this->database = new PDO($dsn, $config['user'], $config['password'], [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        ]);
+        $this->user_id = $userId;
     }
 
-    public function findAll(): array
+    public function getUserId(): int
     {
-        $query = $this->database->query(
-            'SELECT id, user_id, title, author, image, description, status, created_at
-             FROM books
-             ORDER BY created_at DESC'
-        );
-
-        return $query->fetchAll();
+        return $this->user_id;
     }
 
-    public function findById(int $id): ?array
+    public function setTitle(string $title): void
     {
-        $query = $this->database->prepare(
-            'SELECT id, user_id, title, author, image, description, status, created_at
-             FROM books
-             WHERE id = :id'
-        );
-        $query->execute(['id' => $id]);
+        $this->title = $title;
+    }
 
-        $book = $query->fetch();
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
 
-        return $book ?: null;
+    public function setAuthor(?string $author): void
+    {
+        $this->author = $author ?? '';
+    }
+
+    public function getAuthor(): string
+    {
+        return $this->author;
+    }
+
+    public function setImage(?string $image): void
+    {
+        $this->image = $image ?? '';
+    }
+
+    public function getImage(): string
+    {
+        return $this->image;
+    }
+
+    public function setDescription(?string $description): void
+    {
+        $this->description = $description ?? '';
+    }
+
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    public function setStatus(string $status): void
+    {
+        $this->status = $status;
+    }
+
+    public function getStatus(): string
+    {
+        return $this->status;
+    }
+
+    public function setCreatedAt(string $createdAt): void
+    {
+        $this->created_at = $createdAt;
+    }
+
+    public function getCreatedAt(): string
+    {
+        return $this->created_at;
     }
 }

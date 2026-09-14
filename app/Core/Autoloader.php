@@ -3,18 +3,39 @@ namespace App\Core;
 
 class Autoloader
 {
-    // Enregistre l'autoload simple
-    public static function register()
+    public static function register(): void
     {
-        spl_autoload_register(function ($class) {
+        spl_autoload_register(function (string $class): void {
             $prefix = 'App\\';
-            if (strpos($class, $prefix) !== 0) {
+
+            if (strpos($class, $prefix) === 0) {
+                $relative = substr($class, strlen($prefix));
+                $path = __DIR__ . '/../' . str_replace('\\', '/', $relative) . '.php';
+
+                if (is_file($path)) {
+                    require_once $path;
+                }
+
                 return;
             }
-            $relative = substr($class, strlen($prefix));
-            $path = __DIR__ . '/../' . str_replace('\\', '/', $relative) . '.php';
-            if (file_exists($path)) {
-                require_once $path;
+
+            if (strpos($class, '\\') !== false) {
+                return;
+            }
+
+            $directories = [
+                __DIR__ . '/../Models/',
+                __DIR__ . '/../Controllers/',
+                __DIR__ . '/../Core/',
+            ];
+
+            foreach ($directories as $directory) {
+                $path = $directory . $class . '.php';
+
+                if (is_file($path)) {
+                    require_once $path;
+                    return;
+                }
             }
         });
     }

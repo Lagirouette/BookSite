@@ -2,23 +2,32 @@
 namespace App\Controllers;
 
 use App\Core\Controller;
-use App\Models\Book;
+use BookManager as GlobalBookManager;
 
 class BookController extends Controller
 {
     public function index()
     {
-        $bookModel = new Book();
-        $books = $bookModel->findAll();
+        $bookManager = new GlobalBookManager();
+        $books = $bookManager->findAll();
 
         require __DIR__ . '/../Views/books/index.php';
     }
 
     public function show(int $id)
     {
-        $bookModel = new Book();
-        $book = $bookModel->findById($id);
+        $bookManager = new GlobalBookManager();
+        $book = $bookManager->findById($id);
 
-        require __DIR__ . '/../Views/books/show.php';
+        if ($book === null) {
+            $errorController = new ErrorController();
+            $errorController->notFound();
+            return;
+        }
+
+        $userManager = new \UserManager();
+        $owner = $userManager->findById($book->getUserId());
+
+        require __DIR__ . '/../Views/books/singleBook.php';
     }
 }

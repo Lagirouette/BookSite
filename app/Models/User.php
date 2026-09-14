@@ -1,50 +1,54 @@
 <?php
-namespace App\Models;
 
-use PDO;
-
-class User
+/**
+ * Entité User : uniquement les données de l'utilisateur.
+ */
+class User extends AbstractEntity
 {
-    private PDO $database;
+    private string $username = '';
+    private string $email = '';
+    private string $password = '';
 
-    public function __construct()
+    /**
+     * Compatibilité avec l'ancien nom login.
+     */
+    public function setLogin(string $login): void
     {
-        $config = require __DIR__ . '/../../config/database.php';
-        $dsn = sprintf(
-            'mysql:host=%s;dbname=%s;charset=%s',
-            $config['host'],
-            $config['dbname'],
-            $config['charset']
-        );
-
-        $this->database = new PDO($dsn, $config['user'], $config['password'], [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        ]);
+        $this->username = $login;
     }
 
-    public function findByEmail(string $email): ?array
+    public function getLogin(): string
     {
-        $query = $this->database->prepare(
-            'SELECT id, username, email, password FROM users WHERE email = :email LIMIT 1'
-        );
-        $query->execute(['email' => $email]);
-
-        $user = $query->fetch();
-        return $user ?: null;
+        return $this->username;
     }
 
-    public function create(string $username, string $email, string $password): int
+    public function setUsername(string $username): void
     {
-        $query = $this->database->prepare(
-            'INSERT INTO users (username, email, password) VALUES (:username, :email, :password)'
-        );
-        $query->execute([
-            'username' => $username,
-            'email' => $email,
-            'password' => password_hash($password, PASSWORD_DEFAULT),
-        ]);
+        $this->username = $username;
+    }
 
-        return (int) $this->database->lastInsertId();
+    public function getUsername(): string
+    {
+        return $this->username;
+    }
+
+    public function setEmail(string $email): void
+    {
+        $this->email = $email;
+    }
+
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    public function setPassword(string $password): void
+    {
+        $this->password = $password;
+    }
+
+    public function getPassword(): string
+    {
+        return $this->password;
     }
 }

@@ -4,6 +4,7 @@ namespace App\Controllers;
 use App\Core\Controller;
 use App\Models\User;
 use PDOException;
+use UserManager;
 
 class RegisterController extends Controller
 {
@@ -19,7 +20,7 @@ class RegisterController extends Controller
             $username = trim($_POST['username'] ?? '');
             $email = trim($_POST['email'] ?? '');
             $password = $_POST['password'] ?? '';
-            $userModel = new User();
+            $userModel = new UserManager();
 
             if (mb_strlen($username) < 2) {
                 $error = 'Le pseudo doit contenir au moins 2 caractères.';

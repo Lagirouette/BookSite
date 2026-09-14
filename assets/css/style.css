@@ -56,6 +56,10 @@ a:hover { color: var(--green-dark); }
 .main-nav, .header-actions { display: flex; align-items: center; gap: 36px; }
 .main-nav { flex: 1; }
 .header-link { color: #5d605e; font-size: 14px; white-space: nowrap; }
+.header-link--messages { display: inline-flex; align-items: center; gap: 6px; }
+.message-icon { width: 18px; height: 18px; object-fit: contain; }
+.header-link--account { display: inline-flex; align-items: center; gap: 6px; }
+.account-avatar { width: 14px; height: 14px; border-radius: 50%; object-fit: cover; }
 .header-link--strong { color: var(--ink); font-weight: 700; }
 .header-link sup { color: #fff; background: var(--ink); border-radius: 50%; font-size: 9px; padding: 1px 4px; }
 .status-dot { display: inline-block; width: 11px; height: 11px; border: 1px solid #858785; border-radius: 50%; vertical-align: -1px; }
@@ -94,6 +98,20 @@ h1 { margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: clam
 	text-align: right;
 }
 
+.error-content {
+	min-height: calc(100vh - 150px);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 72px 32px 80px;
+	text-align: center;
+}
+.error-code { margin: 0 0 16px; color: var(--green); font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.error-content h1 { margin-bottom: 14px; }
+.error-content > p:not(.error-code) { max-width: 380px; margin: 0; color: var(--muted); line-height: 1.6; }
+.error-content .button { margin-top: 30px; }
+
 .page-shell { max-width: 1200px; margin: 0 auto; padding: 72px 32px 80px; }
 .books-content { display: block; }
 .books-toolbar {
@@ -128,9 +146,26 @@ h1 { margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: clam
 	background-size: 18px 18px;
 }
 .book-item { overflow: hidden; border-radius: 7px; background: #fff; box-shadow: 0 5px 18px rgba(42, 35, 25, .06); }
+.book-item { display: block; transition: transform .2s ease, box-shadow .2s ease; }
+.book-item:hover { color: inherit; transform: translateY(-3px); box-shadow: 0 9px 22px rgba(42, 35, 25, .1); }
 .book-item img { display: block; width: 100%; height: 160px; object-fit: cover; margin-bottom: 0; }
 .book-item h2 { margin: 0 0 8px; padding: 14px 12px 0; font-size: 16px; font-family: 'Inter', sans-serif; font-weight: 500; }
 .book-item p { margin: 0; padding: 0 12px 16px; color: #666b68; font-size: 12px; }
+.single-book { display: grid; grid-template-columns: minmax(0, 1fr) minmax(420px, 1fr); min-height: calc(100vh - 150px); background: #fff; }
+.single-book__image { min-height: 620px; background: #f0eeea; }
+.single-book__image img { display: block; width: 100%; height: 100%; min-height: 620px; object-fit: cover; }
+.single-book__details { display: flex; flex-direction: column; justify-content: center; max-width: 560px; padding: 52px clamp(32px, 7vw, 96px); }
+.single-book__back { align-self: flex-start; margin-bottom: 44px; color: #8a8c89; font-size: 12px; }
+.single-book__back::before { content: '< '; color: var(--green); }
+.single-book__details .eyebrow { margin-bottom: 14px; }
+.single-book__details h1 { font-size: clamp(36px, 4vw, 56px); }
+.single-book__author { margin: 10px 0 0; color: #999c99; font-size: 13px; }
+.single-book__rule { width: 22px; height: 1px; margin: 28px 0 22px; background: #c9cbc8; }
+.single-book__details h2 { margin: 0 0 12px; color: #70736f; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
+.single-book__description { max-width: 470px; margin: 0; color: #555957; font-size: 13px; line-height: 1.55; }
+.single-book__owner { margin-top: 30px; }
+.single-book__owner p { display: inline-flex; align-items: center; min-height: 42px; margin: 0; padding: 0 18px; border-radius: 24px; color: #555957; background: #f5f4f1; font-size: 13px; }
+.single-book__message { display: flex; align-items: center; width: 100%; justify-content: center; margin-top: 44px; }
 .home-content { text-align: center; }
 .home-content h1 { max-width: 650px; margin: 0 auto 20px; }
 .home-content > p:not(.eyebrow) { color: var(--muted); margin-bottom: 28px; }
@@ -188,6 +223,10 @@ h1 { margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: clam
 	.auth-layout { grid-template-columns: 1fr; }
 	.auth-panel { min-height: 580px; padding: 56px 24px; }
 	.auth-image { min-height: 300px; }
+	.single-book { grid-template-columns: 1fr; }
+	.single-book__image, .single-book__image img { min-height: 420px; height: 420px; }
+	.single-book__details { max-width: none; padding: 42px 28px 56px; }
+	.single-book__back { margin-bottom: 32px; }
 	.site-footer { height: auto; flex-wrap: wrap; justify-content: center; padding: 18px 24px; gap: 14px 24px; }
 	.home-hero { min-height: auto; grid-template-columns: 1fr; gap: 38px; padding: 64px 32px; }
 	.home-hero__content { max-width: 430px; margin: 0 auto; text-align: center; }

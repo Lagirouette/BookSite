@@ -1,7 +1,8 @@
 <?php
 // Front controller - point d'entrée public
-// Charge l'autoloader
+// Charge les autoloaders
 
+require_once 'config/config.php';
 require_once __DIR__ . '/../app/Core/Autoloader.php';
 \App\Core\Autoloader::register();
 

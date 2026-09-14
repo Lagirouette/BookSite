@@ -19,19 +19,19 @@
 		<?php else: ?>
 			<div class="books-grid">
 				<?php foreach ($books as $book): ?>
-					<article class="book-item">
-						<?php if (!empty($book['image'])): ?>
-							<img src="<?= htmlspecialchars($book['image'], ENT_QUOTES, 'UTF-8') ?>" alt="<?= htmlspecialchars($book['title'], ENT_QUOTES, 'UTF-8') ?>">
-						<?php else: ?> 
+					<a class="book-item" href="/books/<?= $book->getId() ?>">
+						<?php if (!empty($book->getImage())): ?>
+							<img src="<?= htmlspecialchars($book->getImage(), ENT_QUOTES, 'UTF-8') ?>" alt="<?= htmlspecialchars($book->getTitle(), ENT_QUOTES, 'UTF-8') ?>">
+						<?php else: ?>
 							<img src="/assets/images/default-book.jpg" alt="Image par défaut">
 						<?php endif; ?>
 
-						<h2><?= htmlspecialchars($book['title'], ENT_QUOTES, 'UTF-8') ?></h2>
+						<h2><?= htmlspecialchars($book->getTitle(), ENT_QUOTES, 'UTF-8') ?></h2>
 
-						<?php if (!empty($book['author'])): ?>
-							<p>Auteur : <?= htmlspecialchars($book['author'], ENT_QUOTES, 'UTF-8') ?></p>
+						<?php if (!empty($book->getAuthor())): ?>
+							<p>Auteur : <?= htmlspecialchars($book->getAuthor(), ENT_QUOTES, 'UTF-8') ?></p>
 						<?php endif; ?>
-					</article>
+					</a>
 				<?php endforeach; ?>
 			</div>
 		<?php endif; ?>

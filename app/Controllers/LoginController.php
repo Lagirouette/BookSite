@@ -3,6 +3,7 @@ namespace App\Controllers;
 
 use App\Core\Controller;
 use App\Models\User;
+use UserManager;
 
 class LoginController extends Controller
 {
@@ -17,13 +18,13 @@ class LoginController extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $email = trim($_POST['email'] ?? '');
             $password = $_POST['password'] ?? '';
-            $user = (new User())->findByEmail($email);
+            $user = (new UserManager())->findByEmail($email);
 
-            if ($user && password_verify($password, $user['password'])) {
+            if ($user && password_verify($password, $user->getPassword())) {
                 $_SESSION['user'] = [
-                    'id' => $user['id'],
-                    'username' => $user['username'],
-                    'email' => $user['email'],
+                    'id' => $user->getId(),
+                    'username' => $user->getUsername(),
+                    'email' => $user->getEmail(),
                 ];
                 header('Location: /books');
                 exit;

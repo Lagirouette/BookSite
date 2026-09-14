@@ -2,16 +2,17 @@
 namespace App\Controllers;
 
 use App\Core\Controller;
-use App\Models\Book;
+use BookManager;
 
 class HomeController extends Controller
 {
     public function index(): void
     {
+        $bookManager = new BookManager();
         $books = [];
 
         try {
-            $books = array_slice((new Book())->findAll(), 0, 4);
+            $books = array_slice($bookManager->findAll(), 0, 4);
         } catch (\PDOException $exception) {
             $books = [];
         }

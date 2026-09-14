@@ -19,6 +19,12 @@ class Router
             return;
         }
 
+        if (preg_match('#^/books/(\d+)$#', $path, $matches)) {
+            $controller = new \App\Controllers\BookController();
+            $controller->show((int) $matches[1]);
+            return;
+        }
+
         if ($path === '/login') {
             $controller = new \App\Controllers\LoginController();
             $controller->index();
@@ -31,7 +37,7 @@ class Router
             return;
         }
 
-        http_response_code(404);
-        echo '<h1>Page non trouvée</h1>';
+        $controller = new \App\Controllers\ErrorController();
+        $controller->notFound();
     }
 }

@@ -31,10 +31,10 @@
             <div class="book-grid">
                 <?php foreach ($books as $book): ?>
                     <article class="book-card">
-                        <img src="<?= htmlspecialchars($book['image'] ?? 'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?auto=format&fit=crop&w=500&q=80', ENT_QUOTES, 'UTF-8') ?>" alt="Couverture de <?= htmlspecialchars($book['title'], ENT_QUOTES, 'UTF-8') ?>">
+                        <img src="<?= htmlspecialchars($book->getImage() ?: 'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?auto=format&fit=crop&w=500&q=80', ENT_QUOTES, 'UTF-8') ?>" alt="Couverture de <?= htmlspecialchars($book->getTitle(), ENT_QUOTES, 'UTF-8') ?>">
                         <div class="book-card__body">
-                            <h3><?= htmlspecialchars($book['title'], ENT_QUOTES, 'UTF-8') ?></h3>
-                            <p><?= htmlspecialchars($book['author'] ?? 'Auteur inconnu', ENT_QUOTES, 'UTF-8') ?></p>
+                            <h3><?= htmlspecialchars($book->getTitle(), ENT_QUOTES, 'UTF-8') ?></h3>
+                            <p><?= htmlspecialchars($book->getAuthor() ?: 'Auteur inconnu', ENT_QUOTES, 'UTF-8') ?></p>
                             <small>Vendu par : membre TomTroc</small>
                         </div>
                     </article>
