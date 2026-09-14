@@ -1,7 +1,6 @@
 <header class="site-header">
     <a class="brand" href="/" aria-label="TomTroc, accueil">
-        <span class="brand-mark">T<span>T</span></span>
-        <span class="brand-name">TomTroc</span>
+        <img src="/assets/images/logo.png" alt="Logo de TomTroc">
     </a>
 
     <nav class="main-nav" aria-label="Navigation principale">
