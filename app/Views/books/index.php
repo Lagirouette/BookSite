@@ -8,6 +8,9 @@
 </head>
 <body class="books-page">
 	<?php require __DIR__ . '/../partials/header.php'; ?>
+    <?php $bookSellers = $bookSellers ?? []; ?>
+
+
 	<main class="page-shell books-content">
 		<div class="books-toolbar">
 			<h1>Nos livres à l'échanger</h1>

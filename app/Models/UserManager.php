@@ -10,7 +10,7 @@ class UserManager extends AbstractEntityManager
      */
     public function findById(int $id): ?User
     {
-        $sql = 'SELECT id, username, email FROM users WHERE id = :id LIMIT 1';
+        $sql = 'SELECT id, username, email, profile_photo, created_at FROM users WHERE id = :id LIMIT 1';
         $result = $this->db->query($sql, ['id' => $id]);
         $user = $result->fetch();
 
@@ -34,7 +34,7 @@ class UserManager extends AbstractEntityManager
      */
     public function findByEmail(string $email): ?User
     {
-        $sql = 'SELECT id, username, email, password FROM users WHERE email = :email LIMIT 1';
+        $sql = 'SELECT id, username, email, password, profile_photo FROM users WHERE email = :email LIMIT 1';
         $result = $this->db->query($sql, ['email' => $email]);
         $user = $result->fetch();
 
@@ -54,5 +54,24 @@ class UserManager extends AbstractEntityManager
         ]);
 
         return (int) $this->db->getPDO()->lastInsertId();
+    }
+
+    public function updateProfile(int $id, string $username, string $email, ?string $password, ?string $profilePhoto): void
+    {
+        $fields = ['username = :username', 'email = :email'];
+        $params = ['id' => $id, 'username' => $username, 'email' => $email];
+
+        if ($password !== null && $password !== '') {
+            $fields[] = 'password = :password';
+            $params['password'] = password_hash($password, PASSWORD_DEFAULT);
+        }
+
+        if ($profilePhoto !== null) {
+            $fields[] = 'profile_photo = :profile_photo';
+            $params['profile_photo'] = $profilePhoto;
+        }
+
+        $sql = 'UPDATE users SET ' . implode(', ', $fields) . ' WHERE id = :id';
+        $this->db->query($sql, $params);
     }
 }

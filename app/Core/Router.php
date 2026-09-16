@@ -25,6 +25,18 @@ class Router
             return;
         }
 
+        if (preg_match('#^/books/(\d+)/edit$#', $path, $matches)) {
+            $controller = new \App\Controllers\BookController();
+            $controller->edit((int) $matches[1]);
+            return;
+        }
+
+        if (preg_match('#^/users/(\d+)$#', $path, $matches)) {
+            $controller = new \App\Controllers\UserController();
+            $controller->show((int) $matches[1]);
+            return;
+        }
+
         if ($path === '/login') {
             $controller = new \App\Controllers\LoginController();
             $controller->index();
@@ -34,6 +46,28 @@ class Router
         if ($path === '/register') {
             $controller = new \App\Controllers\RegisterController();
             $controller->index();
+            return;
+        }
+
+        if ($path === '/account') {
+            $controller = new \App\Controllers\AccountController();
+            $controller->index();
+            return;
+        }
+
+        if ($path === '/messages') {
+            $controller = new \App\Controllers\MessageController();
+            $controller->index();
+            return;
+        }
+
+        if ($path === '/logout') {
+            if (session_status() !== PHP_SESSION_ACTIVE) {
+                session_start();
+            }
+            $_SESSION = [];
+            session_destroy();
+            header('Location: /');
             return;
         }
 

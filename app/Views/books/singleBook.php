@@ -41,10 +41,18 @@
 
 			<div class="single-book__owner">
 				<h2>Propriétaire</h2>
-				<p><?= htmlspecialchars(isset($owner) && $owner ? $owner->getUsername() : 'Membre TomTroc', ENT_QUOTES, 'UTF-8') ?></p>
+				<?php if (isset($owner) && $owner): ?>
+					<a class="single-book__owner-link" href="/users/<?= (int) $owner->getId() ?>">
+						<?= htmlspecialchars($owner->getUsername(), ENT_QUOTES, 'UTF-8') ?>
+					</a>
+				<?php else: ?>
+					<p>Membre TomTroc</p>
+				<?php endif; ?>
 			</div>
 
-			<a class="button single-book__message" href="#message">Envoyer un message</a>
+			<?php if (isset($owner) && $owner && (!isset($_SESSION['user']['id']) || (int) $_SESSION['user']['id'] !== $owner->getId())): ?>
+				<a class="button single-book__message" href="/messages?with=<?= $owner->getId() ?>">Envoyer un message</a>
+			<?php endif; ?>
 		</section>
 	</main>
 

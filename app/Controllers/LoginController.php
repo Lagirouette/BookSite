@@ -24,6 +24,7 @@ class LoginController
                     'id' => $user->getId(),
                     'username' => $user->getUsername(),
                     'email' => $user->getEmail(),
+                    'profile_photo' => $user->getProfilePhoto(),
                 ];
                 header('Location: /books');
                 exit;

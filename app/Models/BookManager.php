@@ -69,6 +69,20 @@ class BookManager extends AbstractEntityManager
     /**
      * Supprime un livre de la base de données.
      */
+    public function update(int $id, int $userId, string $title, ?string $author, ?string $description, string $status, string $image): void
+    {
+        $sql = 'UPDATE books SET user_id = :user_id, title = :title, author = :author, image = :image, description = :description, status = :status WHERE id = :id AND user_id = :user_id';
+        $this->db->query($sql, [
+            'id' => $id,
+            'user_id' => $userId,
+            'title' => $title,
+            'author' => $author ?? '',
+            'image' => $image,
+            'description' => $description ?? '',
+            'status' => $status,
+        ]);
+    }
+
     public function delete(GlobalBook $book): void
     {
         $sql = 'DELETE FROM books WHERE id = :id';

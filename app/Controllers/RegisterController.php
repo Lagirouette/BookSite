@@ -36,6 +36,7 @@ class RegisterController
                         'id' => $userId,
                         'username' => $username,
                         'email' => $email,
+                        'profile_photo' => '',
                     ];
                     header('Location: /books');
                     exit;

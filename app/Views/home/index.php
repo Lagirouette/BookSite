@@ -9,6 +9,7 @@
 <body class="home-page">
     <?php require __DIR__ . '/../partials/header.php'; ?>
     <?php $books = $books ?? []; ?>
+    <?php $bookSellers = $bookSellers ?? []; ?>
 
     <main>
         <section class="home-hero section-cream">
@@ -19,7 +20,7 @@
                 <a class="button button--small" href="/books">Découvrir</a>
             </div>
             <figure class="home-hero__figure">
-                <img src="https://images.unsplash.com/photo-1526243741027-444d633d7365?auto=format&fit=crop&w=900&q=85" alt="Lecteur entouré de livres dans une librairie">
+                <img src="/assets/images/front-page.jpg" alt="Lecteur entouré de livres dans une librairie">
             </figure>
         </section>
 
@@ -31,11 +32,11 @@
             <div class="book-grid">
                 <?php foreach ($books as $book): ?>
                     <article class="book-card">
-                        <img src="<?= htmlspecialchars($book->getImage() ?: 'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?auto=format&fit=crop&w=500&q=80', ENT_QUOTES, 'UTF-8') ?>" alt="Couverture de <?= htmlspecialchars($book->getTitle(), ENT_QUOTES, 'UTF-8') ?>">
+                        <img src="<?= htmlspecialchars($book->getImage() ?: '/assets/images/default-book.jpg', ENT_QUOTES, 'UTF-8') ?>" alt="Couverture de <?= htmlspecialchars($book->getTitle(), ENT_QUOTES, 'UTF-8') ?>">
                         <div class="book-card__body">
                             <h3><?= htmlspecialchars($book->getTitle(), ENT_QUOTES, 'UTF-8') ?></h3>
                             <p><?= htmlspecialchars($book->getAuthor() ?: 'Auteur inconnu', ENT_QUOTES, 'UTF-8') ?></p>
-                            <small>Vendu par : membre TomTroc</small>
+                            <small>Vendu par : <?= htmlspecialchars($bookSellers[$book->getId()], ENT_QUOTES, 'UTF-8') ?></small>
                         </div>
                     </article>
                 <?php endforeach; ?>
@@ -50,10 +51,10 @@
                 <p>Échanger des livres avec TomTroc c'est simple et amusant ! Suivez ces étapes pour commencer :</p>
             </div>
             <div class="steps-grid">
-                <article><span>01</span><p>Inscrivez-vous gratuitement sur notre plateforme.</p></article>
-                <article><span>02</span><p>Ajoutez les livres que vous souhaitez échanger à votre profil.</p></article>
-                <article><span>03</span><p>Parcourez les livres disponibles chez d'autres membres.</p></article>
-                <article><span>04</span><p>Proposez un échange et discutez avec d'autres passionnés de lecture.</p></article>
+                <article><p>Inscrivez-vous gratuitement sur notre plateforme.</p></article>
+                <article><p>Ajoutez les livres que vous souhaitez échanger à votre profil.</p></article>
+                <article><p>Parcourez les livres disponibles chez d'autres membres.</p></article>
+                <article><p>Proposez un échange et discutez avec d'autres passionnés de lecture.</p></article>
             </div>
             <a class="button button--outline" href="/books">Voir tous les livres</a>
         </section>

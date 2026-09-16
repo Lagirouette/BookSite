@@ -8,6 +8,8 @@ class User extends AbstractEntity
     private string $username = '';
     private string $email = '';
     private string $password = '';
+    private string $profile_photo = '';
+    private string $created_at = '';
 
     /**
      * Compatibilité avec l'ancien nom login.
@@ -50,5 +52,25 @@ class User extends AbstractEntity
     public function getPassword(): string
     {
         return $this->password;
+    }
+
+    public function setProfilePhoto(?string $profilePhoto): void
+    {
+        $this->profile_photo = $profilePhoto ?? '';
+    }
+
+    public function getProfilePhoto(): string
+    {
+        return $this->profile_photo;
+    }
+
+    public function setCreatedAt(?string $createdAt): void
+    {
+        $this->created_at = $createdAt ?? '';
+    }
+
+    public function getCreatedAt(): string
+    {
+        return $this->created_at;
     }
 }
