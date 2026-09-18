@@ -92,6 +92,30 @@ class BookController
         require __DIR__ . '/../Views/books/edit.php';
     }
 
+    public function deleteBook(int $id): void
+    {
+        if (session_status() !== PHP_SESSION_ACTIVE) {
+            session_start();
+        }
+
+        if (empty($_SESSION['user']['id'])) {
+            header('Location: /login');
+            exit;
+        }
+
+        $bookManager = new GlobalBookManager();
+        $book = $bookManager->findById($id);
+
+        if ($book === null || $book->getUserId() !== (int) $_SESSION['user']['id']) {
+            header('Location: /account');
+            exit;
+        }
+
+        $bookManager->delete($book);
+        header('Location: /account');
+        exit;
+    }
+
     private function storeBookImage(array $file, ?string &$error): ?string
     {
         if ($file['error'] !== UPLOAD_ERR_OK || $file['size'] > 2 * 1024 * 1024) {

@@ -2,9 +2,9 @@
 // Front controller - point d'entrée public
 // Charge les autoloaders
 
-require_once 'config/config.php';
-require_once __DIR__ . '/../app/Core/Autoloader.php';
-\App\Core\Autoloader::register();
+require_once __DIR__ . '/../config/config.php';
+require_once __DIR__ . '/../app/router/Autoloader.php';
+\App\router\Autoloader::register();
 
 $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 if (strpos($path, '/assets/') === 0) {
@@ -26,5 +26,5 @@ if (strpos($path, '/assets/') === 0) {
 	}
 }
 
-$router = new \App\Core\Router();
+$router = new \App\router\Router();
 $router->dispatch($_SERVER['REQUEST_URI']);

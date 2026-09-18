@@ -1,5 +1,5 @@
 <?php
-namespace App\Core;
+namespace App\router;
 
 class Autoloader
 {
@@ -26,7 +26,7 @@ class Autoloader
             $directories = [
                 __DIR__ . '/../Models/',
                 __DIR__ . '/../Controllers/',
-                __DIR__ . '/../Core/',
+                __DIR__ . '/../router/',
             ];
 
             foreach ($directories as $directory) {

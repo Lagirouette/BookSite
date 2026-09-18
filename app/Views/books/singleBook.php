@@ -26,8 +26,6 @@
 		</div>
 
 		<section class="single-book__details" aria-labelledby="book-title">
-			<a class="single-book__back" href="/books">Retour aux livres</a>
-			<p class="eyebrow">Livre à l'échange</p>
 			<h1 id="book-title"><?= htmlspecialchars($book->getTitle(), ENT_QUOTES, 'UTF-8') ?></h1>
 			<?php if (!empty($book->getAuthor())): ?>
 				<p class="single-book__author">par <?= htmlspecialchars($book->getAuthor(), ENT_QUOTES, 'UTF-8') ?></p>
@@ -43,10 +41,14 @@
 				<h2>Propriétaire</h2>
 				<?php if (isset($owner) && $owner): ?>
 					<a class="single-book__owner-link" href="/users/<?= (int) $owner->getId() ?>">
+						<img class="single-book__owner-avatar" src="<?= htmlspecialchars($owner->getProfilePhoto() ?: '/assets/images/avatar.png', ENT_QUOTES, 'UTF-8') ?>" alt="">
 						<?= htmlspecialchars($owner->getUsername(), ENT_QUOTES, 'UTF-8') ?>
 					</a>
 				<?php else: ?>
-					<p>Membre TomTroc</p>
+					<p>
+						<img class="single-book__owner-avatar" src="/assets/images/avatar.png" alt="">
+						Membre TomTroc
+					</p>
 				<?php endif; ?>
 			</div>
 

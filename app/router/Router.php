@@ -1,5 +1,5 @@
 <?php
-namespace App\Core;
+namespace App\router;
 
 class Router
 {
@@ -28,6 +28,12 @@ class Router
         if (preg_match('#^/books/(\d+)/edit$#', $path, $matches)) {
             $controller = new \App\Controllers\BookController();
             $controller->edit((int) $matches[1]);
+            return;
+        }
+
+        if (preg_match('#^/books/(\d+)/delete$#', $path, $matches)) {
+            $controller = new \App\Controllers\BookController();
+            $controller->deleteBook((int) $matches[1]);
             return;
         }
 

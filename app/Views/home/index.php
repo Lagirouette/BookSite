@@ -14,7 +14,6 @@
     <main>
         <section class="home-hero section-cream">
             <div class="home-hero__content">
-                <p class="eyebrow">La bibliothèque collaborative</p>
                 <h1>Rejoignez nos<br>lecteurs passionnés</h1>
                 <p>Donnez une nouvelle vie à vos livres en les échangeant avec d'autres amoureux de la lecture. Nous croyons en la magie du partage de connaissances et d'histoires à travers les livres.</p>
                 <a class="button button--small" href="/books">Découvrir</a>
@@ -26,7 +25,6 @@
 
         <section class="latest-books section-white" aria-labelledby="latest-books-title">
             <div class="section-heading">
-                <p class="eyebrow">La sélection de la communauté</p>
                 <h2 id="latest-books-title">Les derniers livres ajoutés</h2>
             </div>
             <div class="book-grid">
@@ -46,7 +44,6 @@
 
         <section class="how-it-works section-cream" aria-labelledby="how-title">
             <div class="section-heading section-heading--narrow">
-                <p class="eyebrow">Simple comme un échange</p>
                 <h2 id="how-title">Comment ça marche ?</h2>
                 <p>Échanger des livres avec TomTroc c'est simple et amusant ! Suivez ces étapes pour commencer :</p>
             </div>
@@ -59,20 +56,22 @@
             <a class="button button--outline" href="/books">Voir tous les livres</a>
         </section>
 
+        <div class="values-banner" aria-label="Bibliothèque remplie de livres"></div>
+
         <section class="values section-white" aria-labelledby="values-title">
-            <!-- <div class="values-banner"></div> -->
             <div class="values-content">
                 <div>
-                    <p class="eyebrow">Notre raison d'être</p>
                     <h2 id="values-title">Nos valeurs</h2>
                 </div>
                 <div class="values-copy">
                     <p>Chez Tom Troc, nous mettons l'accent sur le partage, la découverte et la communauté. Nos valeurs sont ancrées dans notre passion pour les livres et notre désir de créer des liens entre les lecteurs. Nous croyons en la puissance des histoires pour rassembler les gens et inspirer des conversations enrichissantes.</p>
                     <p>Notre association a été fondée avec une conviction profonde : chaque livre mérite d'être lu et partagé.</p>
                     <p>Nous sommes passionnés par la création d'une plateforme conviviale qui permet aux lecteurs de se connecter, de partager leurs découvertes littéraires et d'échanger des livres qui attendent patiemment sur les étagères.</p>
-                    <em>L'équipe Tom Troc</em>
+                    <div class="values-signature">
+                        <em>L'équipe Tom Troc</em>
+                        <div class="values-mark" aria-hidden="true"><img src="/assets/images/front-page-heart.png" alt=""></div>
+                    </div>
                 </div>
-                <!-- <div class="values-mark" aria-hidden="true">♡</div> -->
             </div>
         </section>
     </main>

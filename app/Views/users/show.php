@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?= htmlspecialchars($user->getUsername(), ENT_QUOTES, 'UTF-8') ?> - TomTroc</title>
+    <title><?= htmlspecialchars(isset($user) ? $user->getUsername() : 'Profil', ENT_QUOTES, 'UTF-8') ?> - TomTroc</title>
     <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body class="public-account-page">
@@ -37,7 +37,7 @@
                                 <td><img src="<?= htmlspecialchars($book->getImage() ?: '/assets/images/default-book.jpg', ENT_QUOTES, 'UTF-8') ?>" alt=""></td>
                                 <td><?= htmlspecialchars($book->getTitle(), ENT_QUOTES, 'UTF-8') ?></td>
                                 <td><?= htmlspecialchars($book->getAuthor(), ENT_QUOTES, 'UTF-8') ?></td>
-                                <td><?= htmlspecialchars($book->getDescription() ?: 'Aucune description', ENT_QUOTES, 'UTF-8') ?></td>
+                                <td><span class="books-table-description"><?= htmlspecialchars($book->getDescription() ?: 'Aucune description', ENT_QUOTES, 'UTF-8') ?></span></td>
                             </tr>
                         <?php endforeach; ?>
                         </tbody>

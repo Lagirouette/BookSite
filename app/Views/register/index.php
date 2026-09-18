@@ -13,9 +13,7 @@
     <main class="auth-layout">
         <section class="auth-panel" aria-labelledby="register-title">
             <div class="auth-form-wrap">
-                <p class="eyebrow">Rejoignez la communauté</p>
-                <h1 id="register-title">Inscription</h1>
-                <p class="auth-intro">Créez votre compte et commencez à échanger vos livres.</p>
+                <h1 class="register-title">Inscription</h1>
 
                 <?php if ($error): ?>
                     <p class="form-error" role="alert"><?= htmlspecialchars($error, ENT_QUOTES, 'UTF-8') ?></p>

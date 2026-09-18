@@ -1,5 +1,6 @@
 function filterBooks() {
-	const searchValue = document.getElementById('searchInput').value.toLowerCase().trim();
+	const searchInput = document.getElementById('searchInput');
+	const searchValue = searchInput.value.toLowerCase().trim();
 	const books = document.querySelectorAll('.books-content .book-item');
 
 	books.forEach((book) => {
@@ -7,3 +8,11 @@ function filterBooks() {
 		book.hidden = !bookText.includes(searchValue);
 	});
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+	const searchInput = document.getElementById('searchInput');
+
+	if (searchInput) {
+		searchInput.addEventListener('input', filterBooks);
+	}
+});

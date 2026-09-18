@@ -19,12 +19,12 @@
             <section class="account-card account-profile" aria-labelledby="profile-title">
                 <div class="profile-photo-wrap">
                     <img class="profile-photo" src="<?= htmlspecialchars($user->getProfilePhoto() ?: '/assets/images/avatar.png', ENT_QUOTES, 'UTF-8') ?>" alt="Photo de profil de <?= htmlspecialchars($user->getUsername(), ENT_QUOTES, 'UTF-8') ?>">
-                    <label class="profile-photo-link" for="profile_photo">Modifier la photo</label>
+                    <label class="profile-photo-link" for="profile_photo">modifier</label>
                 </div>
                 <hr>
                 <p class="profile-name"><?= htmlspecialchars($user->getUsername(), ENT_QUOTES, 'UTF-8') ?></p>
                 <p class="profile-meta">Membre depuis <?= date('Y', strtotime($user->getCreatedAt() ?: 'now')) ?></p>
-                <p class="profile-books">Livres : <?= count($books) ?></p>
+                <p class="profile-books"><?= count($books) ?> livres</p>
             </section>
 
             <section class="account-card account-form-card" aria-labelledby="profile-title">
@@ -34,7 +34,7 @@
                     <label for="email">Adresse email</label>
                     <input id="email" name="email" type="email" required value="<?= htmlspecialchars($user->getEmail(), ENT_QUOTES, 'UTF-8') ?>">
                     <label for="password">Mot de passe</label>
-                    <input id="password" name="password" type="password" minlength="8" autocomplete="new-password" placeholder="********">
+                    <input id="password" name="password" type="password" minlength="8" autocomplete="new-password" placeholder="•••••••••">
                     <label for="username">Pseudo</label>
                     <input id="username" name="username" type="text" required value="<?= htmlspecialchars($user->getUsername(), ENT_QUOTES, 'UTF-8') ?>">
                     <button class="button button--outline" type="submit">Enregistrer</button>
@@ -42,8 +42,7 @@
             </section>
         </div>
 
-        <section class="account-books" aria-labelledby="books-title">
-            <h2 id="books-title">Vos livres</h2>
+        <section class="account-books">
             <?php if (empty($books)): ?>
                 <p class="empty-state">Vous n'avez pas encore ajouté de livre.</p>
             <?php else: ?>
@@ -56,12 +55,13 @@
                                 <td><img src="<?= htmlspecialchars($book->getImage() ?: '/assets/images/default-book.jpg', ENT_QUOTES, 'UTF-8') ?>" alt=""></td>
                                 <td><?= htmlspecialchars($book->getTitle(), ENT_QUOTES, 'UTF-8') ?></td>
                                 <td><?= htmlspecialchars($book->getAuthor(), ENT_QUOTES, 'UTF-8') ?></td>
-                                <td><?= htmlspecialchars($book->getDescription() ?: 'Aucune description', ENT_QUOTES, 'UTF-8') ?></td>
+                                <td><span class="books-table-description"><?= htmlspecialchars($book->getDescription() ?: 'Aucune description', ENT_QUOTES, 'UTF-8') ?></span></td>
                                 <td><span class="availability availability--<?= $book->getStatus() === 'available' ? 'available' : 'unavailable' ?>"><?= $book->getStatus() === 'available' ? 'Disponible' : 'Non dispo.' ?></span></td>
                                 <td>
-                                    <a href="/books/<?= $book->getId() ?>">Voir</a>
-                                    <span> · </span>
-                                    <a href="/books/<?= $book->getId() ?>/edit">Éditer</a>
+                                    <div class="books-table-actions">
+                                        <a href="/books/<?= $book->getId() ?>/edit">Éditer</a>
+                                        <a href="/books/<?= $book->getId() ?>/delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce livre ?')">Supprimer</a>
+                                    </div>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

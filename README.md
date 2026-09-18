@@ -5,7 +5,7 @@ projet PHP en architecture MVC.
 Structure créée:
 
 - `public/` : front controller et ressources publiques
-- `app/Core/` : classes de base (autoloader, controller, router)
+- `app/router/` : classes de base (autoloader, controller, router)
 - `app/Controllers/` : contrôleurs
 - `app/Models/` : modèles
 - `app/Views/` : vues
@@ -16,8 +16,8 @@ Structure créée:
 Fichiers importants:
 
 - `public/index.php` : point d'entrée
-- `app/Core/Autoloader.php` : autoload simple
-- `app/Core/Controller.php` : classe de base pour les contrôleurs
+- `app/router/Autoloader.php` : autoload simple
+- `app/router/Controller.php` : classe de base pour les contrôleurs
 - `config/database.php` : paramètres de connexion
 - `migrations/schema.sql` : schéma initial (utilisateurs, livres, messages)
 - `migrations/seed.sql` : données de démonstration pour commencer

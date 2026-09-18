@@ -11,11 +11,9 @@
     <?php $error = $error ?? null; ?>
 
     <main class="auth-layout">
-        <section class="auth-panel" aria-labelledby="login-title">
+        <section class="auth-panel">
             <div class="auth-form-wrap">
-                <p class="eyebrow">Bienvenue chez TomTroc</p>
-                <h1 id="login-title">Connexion</h1>
-                <p class="auth-intro">Retrouvez votre bibliothèque et vos échanges.</p>
+                <h1 class="login-title">Connexion</h1>
 
                 <?php if ($error): ?>
                     <p class="form-error" role="alert"><?= htmlspecialchars($error, ENT_QUOTES, 'UTF-8') ?></p>
@@ -31,7 +29,7 @@
                     <button class="button" type="submit">Se connecter</button>
                 </form>
 
-                <p class="auth-switch">Pas encore inscrit ? <a href="/register">Créer un compte</a></p>
+                <p class="auth-switch">Pas de compte ? <a href="/register">Inscrivez-vous</a></p>
             </div>
         </section>
         <div class="auth-image" role="img" aria-label="Bibliothèque remplie de livres"></div>

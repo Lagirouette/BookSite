@@ -14,7 +14,7 @@
 	<main class="page-shell books-content">
 		<div class="books-toolbar">
 			<h1>Nos livres à l'échanger</h1>
-			<input type="text" id="searchInput" placeholder="Rechercher un livre..." onkeyup="filterBooks()">
+			<input type="text" id="searchInput" placeholder="Rechercher un livre">
 		</div>
 
 		<?php if (empty($books)): ?>
@@ -30,7 +30,7 @@
 						<?php endif; ?>
 
 						<h2><?= htmlspecialchars($book->getTitle(), ENT_QUOTES, 'UTF-8') ?></h2>
-
+						<p><?= htmlspecialchars($book->getAuthor() ?: 'Auteur inconnu', ENT_QUOTES, 'UTF-8') ?></p>
 						<?php if (!empty($bookSellers[$book->getId()])): ?>
 							<p>Vendu par : <?= htmlspecialchars($bookSellers[$book->getId()], ENT_QUOTES, 'UTF-8') ?></p>
 						<?php endif; ?>
