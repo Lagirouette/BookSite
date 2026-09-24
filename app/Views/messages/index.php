@@ -2,6 +2,11 @@
 if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
+$contactId = isset($contactId) ? (int) $contactId : 0;
+$contact = $contact ?? null;
+$messages = $messages ?? [];
+$error = $error ?? null;
+$currentUserId = isset($currentUserId) ? (int) $currentUserId : (int) ($_SESSION['user_id'] ?? 0);
 ?>
 <!doctype html>
 <html lang="fr">
@@ -14,7 +19,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 <body class="messages-page">
     <?php require __DIR__ . '/../partials/header.php'; ?>
 
-    <main class="messages-layout">
+    <main class="messages-layout <?= $contact ? 'messages-layout--conversation' : 'messages-layout--list' ?>">
         <aside class="conversation-list" aria-labelledby="messages-title">
             <h1 id="messages-title">Messagerie</h1>
             <?php if (empty($conversations)): ?>
@@ -34,6 +39,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 
         <section class="conversation" aria-labelledby="conversation-title">
             <?php if ($contact): ?>
+            <a class="conversation__back" href="/messages">&lt; retour</a>
                 <header class="conversation__header">
                     <img src="<?= htmlspecialchars($contact->getProfilePhoto() ?: '/assets/images/avatar.png', ENT_QUOTES, 'UTF-8') ?>" alt="">
                     <h2 id="conversation-title"><?= htmlspecialchars($contact->getUsername(), ENT_QUOTES, 'UTF-8') ?></h2>
@@ -48,9 +54,9 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
                 </div>
                 <?php if ($error): ?><p class="form-error" role="alert"><?= htmlspecialchars($error, ENT_QUOTES, 'UTF-8') ?></p><?php endif; ?>
                 <form class="message-form" method="post">
-                    <input type="hidden" name="receiver_id" value="<?= $contact->getId() ?>">
+                    <input type="hidden" name="receiver_id" value="<?= isset($contact) ? $contact->getId() : 0 ?>">
                     <label class="visually-hidden" for="content">Votre message</label>
-                    <textarea id="content" name="content" rows="1" required placeholder="Votre message..."></textarea>
+                    <textarea id="content" name="content" rows="1" required placeholder="Tapez votre message ici"></textarea>
                     <button class="button" type="submit">Envoyer</button>
                 </form>
             <?php else: ?>
@@ -62,5 +68,6 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
     </main>
 
     <?php require __DIR__ . '/../partials/footer.php'; ?>
+    <script src="/assets/js/messages.js"></script>
 </body>
 </html>

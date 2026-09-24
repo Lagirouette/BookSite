@@ -42,7 +42,7 @@
         <a href="#">Politique de confidentialité</a>
         <a href="#">Mentions légales</a>
         <span>TomTroc©</span>
-        <strong>TT</strong>
+        <img src="/assets/images/logoFooter.png" alt="Logo de TomTroc" class="footer-logo">
     </footer>
 </body>
 </html>

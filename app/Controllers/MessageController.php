@@ -20,10 +20,6 @@ class MessageController
         $userManager = new \UserManager();
         $conversations = $messageManager->findConversationUsers($currentUserId);
 
-        if ($contactId === 0 && !empty($conversations)) {
-            $contactId = (int) $conversations[0]['id'];
-        }
-
         $contact = $contactId > 0 ? $userManager->findById($contactId) : null;
         if ($contact && $contact->getId() === $currentUserId) {
             $contact = null;

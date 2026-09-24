@@ -40,7 +40,6 @@
 		<?php endif; ?>
 	</main>
 	<script src="/assets/js/books.js"></script>
-
 	<?php require __DIR__ . '/../partials/footer.php'; ?>
 </body>
 </html>

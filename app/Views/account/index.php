@@ -12,19 +12,19 @@
     <main class="account-content page-shell">
         <h1>Mon compte</h1>
 
-        <?php if ($error): ?><p class="form-error" role="alert"><?= htmlspecialchars($error, ENT_QUOTES, 'UTF-8') ?></p><?php endif; ?>
-        <?php if ($success): ?><p class="form-success" role="status"><?= htmlspecialchars($success, ENT_QUOTES, 'UTF-8') ?></p><?php endif; ?>
+        <?php if (!empty($error)): ?><p class="form-error" role="alert"><?= htmlspecialchars($error, ENT_QUOTES, 'UTF-8') ?></p><?php endif; ?>
+        <?php if (!empty($success)): ?><p class="form-success" role="status"><?= htmlspecialchars($success, ENT_QUOTES, 'UTF-8') ?></p><?php endif; ?>
 
         <div class="account-panels">
             <section class="account-card account-profile" aria-labelledby="profile-title">
                 <div class="profile-photo-wrap">
-                    <img class="profile-photo" src="<?= htmlspecialchars($user->getProfilePhoto() ?: '/assets/images/avatar.png', ENT_QUOTES, 'UTF-8') ?>" alt="Photo de profil de <?= htmlspecialchars($user->getUsername(), ENT_QUOTES, 'UTF-8') ?>">
+                    <img class="profile-photo" src="<?= htmlspecialchars(isset($user) ? ($user->getProfilePhoto() ?: '/assets/images/avatar.png') : '/assets/images/avatar.png', ENT_QUOTES, 'UTF-8') ?>" alt="Photo de profil de <?= htmlspecialchars(isset($user) ? $user->getUsername() : '', ENT_QUOTES, 'UTF-8') ?>">
                     <label class="profile-photo-link" for="profile_photo">modifier</label>
                 </div>
                 <hr>
-                <p class="profile-name"><?= htmlspecialchars($user->getUsername(), ENT_QUOTES, 'UTF-8') ?></p>
-                <p class="profile-meta">Membre depuis <?= date('Y', strtotime($user->getCreatedAt() ?: 'now')) ?></p>
-                <p class="profile-books"><?= count($books) ?> livres</p>
+                <p class="profile-name"><?= htmlspecialchars(isset($user) ? $user->getUsername() : '', ENT_QUOTES, 'UTF-8') ?></p>
+                <p class="profile-meta">Membre depuis <?= date('Y', strtotime(isset($user) ? $user->getCreatedAt() : 'now')) ?></p>
+                <p class="profile-books">Bibliothèque<br><?= count(isset($books) ? $books : []) ?> livres</p>
             </section>
 
             <section class="account-card account-form-card" aria-labelledby="profile-title">
@@ -32,11 +32,11 @@
                 <form method="post" enctype="multipart/form-data" class="account-form">
                     <input id="profile_photo" name="profile_photo" type="file" accept="image/jpeg,image/png,image/webp" class="visually-hidden">
                     <label for="email">Adresse email</label>
-                    <input id="email" name="email" type="email" required value="<?= htmlspecialchars($user->getEmail(), ENT_QUOTES, 'UTF-8') ?>">
+                    <input id="email" name="email" type="email" required value="<?= htmlspecialchars(isset($user) ? $user->getEmail() : '', ENT_QUOTES, 'UTF-8') ?>">
                     <label for="password">Mot de passe</label>
                     <input id="password" name="password" type="password" minlength="8" autocomplete="new-password" placeholder="•••••••••">
                     <label for="username">Pseudo</label>
-                    <input id="username" name="username" type="text" required value="<?= htmlspecialchars($user->getUsername(), ENT_QUOTES, 'UTF-8') ?>">
+                    <input id="username" name="username" type="text" required value="<?= htmlspecialchars(isset($user) ? $user->getUsername() : '', ENT_QUOTES, 'UTF-8') ?>">
                     <button class="button button--outline" type="submit">Enregistrer</button>
                 </form>
             </section>
@@ -52,7 +52,7 @@
                         <tbody>
                         <?php foreach ($books as $book): ?>
                             <tr>
-                                <td><img src="<?= htmlspecialchars($book->getImage() ?: '/assets/images/default-book.jpg', ENT_QUOTES, 'UTF-8') ?>" alt=""></td>
+                                <td><img src="<?= htmlspecialchars($book->getImage() ?: '/assets/images/default-book.jpg', ENT_QUOTES, 'UTF-8') ?>" alt="Couverture de <?= htmlspecialchars($book->getTitle(), ENT_QUOTES, 'UTF-8') ?>"></td>
                                 <td><?= htmlspecialchars($book->getTitle(), ENT_QUOTES, 'UTF-8') ?></td>
                                 <td><?= htmlspecialchars($book->getAuthor(), ENT_QUOTES, 'UTF-8') ?></td>
                                 <td><span class="books-table-description"><?= htmlspecialchars($book->getDescription() ?: 'Aucune description', ENT_QUOTES, 'UTF-8') ?></span></td>
