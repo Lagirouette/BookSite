@@ -14,7 +14,7 @@
 	<main class="page-shell books-content">
 		<div class="books-toolbar">
 			<h1>Nos livres à l'échanger</h1>
-			<input type="text" id="searchInput" placeholder="Rechercher un livre">
+			<input type="text" id="searchInput" placeholder="Rechercher un livre" aria-label="Rechercher un livre">
 		</div>
 
 		<?php if (empty($books)): ?>

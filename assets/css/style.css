@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Inter:wght@300;400;600&family=Playfair+Display:wght@500;600&display=swap');
 
 :root {
-	--green: #00AC66;
-	--green-dark: #008B56;
+	--green: #007F4F;
+	--green-dark: #006B43;
 	--ink: #252525;
-	--muted: #777a78;
+	--muted: #626663;
 	--paper: #fbfaf8;
 	--line: #ebeae7;
 }
@@ -78,13 +78,13 @@ a:hover { color: var(--green-dark); }
 .login-title { margin: 0 0 30px; font-family: 'Playfair Display', Georgia, serif; font-size: clamp(28px, 4vw, 36px); font-weight: 500; }
 h1 { margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: clamp(34px, 4vw, 48px); font-weight: 500; line-height: 1.15; }
 .auth-form { display: grid; gap: 10px; }
-.auth-form label { margin-top: 10px; color: #A6A6A6; font-size: 12px;  font-family: 'Inter', sans-serif; font-size: 14px; font-style: normal; font-weight: 400; line-height: 100%; letter-spacing: 0; }
+.auth-form label { margin-top: 10px; color: #6B6F6C; font-size: 12px;  font-family: 'Inter', sans-serif; font-size: 14px; font-style: normal; font-weight: 400; line-height: 100%; letter-spacing: 0; }
 .auth-form input { width: 100%; height: 46px; border: 1px solid #e1e2df; border-radius: 4px; background: #fdfdfc; padding: 0 14px; color: var(--ink); font: inherit; outline: none; }
 .auth-form input:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(0, 170, 112, .12); }
 .button { min-height: 46px; margin-top: 22px; border: 0; border-radius: 5px; color: #fff; background: var(--green); cursor: pointer; font: inherit; font-weight: 700; transition: background .2s ease, transform .2s ease; }
 .button:hover { color: #fff; background: var(--green-dark); transform: translateY(-1px); }
 .button--small { display: inline-flex; align-items: center; padding: 0 24px; }
-.auth-switch { margin-top: 28px; color: #6e716f; font-size: 12px; }
+.auth-switch { margin-top: 28px; color: #626663; font-size: 12px; }
 .auth-switch a { text-decoration: underline; }
 .form-error { padding: 12px 14px; border-left: 3px solid #d26a4a; color: #9b4228; background: #fff4ef; font-size: 12px; }
 .auth-image { min-height: 560px; background: linear-gradient(90deg, rgba(30, 20, 10, .06), transparent), url('/assets/images/auth-background.jpg') center / cover; }
@@ -96,7 +96,7 @@ h1 { margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: clam
 	align-items: center; 
 	gap: 34px; 
 	padding: 0 max(7vw, 32px); 
-	color: #737573; 
+	color: #626663;
 	background: #fff; 
 	font-size: 10px; 
 	position: relative;
@@ -189,7 +189,7 @@ h1 { margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: clam
 	padding: 0 12px 16px;
 	font-family: 'Inter', sans-serif;
 	font-weight: 400;
-	color: #A6A6A6;
+	color: #6B6F6C;
 }
 .book-item p,
 .book-card p {
@@ -204,9 +204,9 @@ h1 { margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: clam
 .single-book__image img { display: block; width: 100%; height: 100%; min-height: 620px; object-fit: cover; }
 .single-book__details { display: flex; flex-direction: column; justify-content: center; max-width: 560px; padding: 52px clamp(32px, 7vw, 96px); }
 .single-book__details h1 { font-size: 48px; font-family: 'Playfair Display', Georgia, serif; font-weight: 400; line-height: 100%; }
-.single-book__author { margin: 10px 0 0; color: #999c99; font-size: 13px; }
+.single-book__author { margin: 10px 0 0; color: #6D716E; font-size: 13px; }
 .single-book__rule { width: 22px; height: 1px; margin: 28px 0 22px; background: #c9cbc8; }
-.single-book__details h2 { margin: 0 0 12px; color: #70736f; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
+.single-book__details h2 { margin: 0 0 12px; color: #626663; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
 .single-book__description { max-width: 470px; margin: 0; color: #555957; font-size: 13px; line-height: 1.55; }
 .single-book__owner { margin-top: 30px; }
 .single-book__owner p, .single-book__owner-link { display: inline-flex; align-items: center; width: 157px; height: 60px; box-sizing: border-box; margin: 0; gap: 12px; padding: 6px 17px 6px 6px; border-radius: 114px; color: #555957; background: #f5f4f1; font-size: 13px; }
@@ -236,7 +236,7 @@ h1 { margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: clam
 .home-hero__content > p { margin: 0 0 10px; color: #555957; line-height: 1.45; font-size: 16px; font-weight: 300; font-family: 'Inter', sans-serif; }
 .home-hero__figure { width: min(100%, 306px); margin: 0; justify-self: left; }
 .home-hero__figure img { display: block; width: 404px; height: 536px; object-fit: cover; }
-.home-hero__figure figcaption { margin-top: 8px; color: #aaa9a5; font-size: 10px; font-style: italic; text-align: right; }
+.home-hero__figure figcaption { margin-top: 8px; color: #70706D; font-size: 10px; font-style: italic; text-align: right; }
 .latest-books { padding: 56px clamp(32px, 10vw, 120px) 64px; text-align: center; }
 .latest-books .section-heading,
 .latest-books .book-grid,
@@ -258,7 +258,7 @@ h1 { margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: clam
 	margin-left: auto;
 }
 .section-heading--narrow { max-width: 390px; margin-right: auto; margin-left: auto; }
-.section-heading--narrow > p:last-child { color: #6e716f; font-size: 16px; line-height: 100%; font-family: 'Inter', sans-serif; font-weight: 300; }
+.section-heading--narrow > p:last-child { color: #626663; font-size: 16px; line-height: 100%; font-family: 'Inter', sans-serif; font-weight: 300; }
 .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin: 36px 0 32px; }
 .steps-grid article { min-height: 90px; display: flex; align-items: center; justify-content: center; padding: 20px 16px; border-radius: 7px; background: #fff; box-shadow: 0 3px 12px rgba(42, 35, 25, .04); }
 .steps-grid p { max-width: 145px; margin: 0; line-height: 100%; font-family: 'Inter', sans-serif; font-weight: 400; font-size: 14px; }
@@ -277,7 +277,7 @@ h1 { margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: clam
 .values-content h2 { margin: 0; text-align: center; }
 .values-copy { max-width: 470px; margin: 0 auto; color: #636663; font-family: 'Inter', sans-serif; font-size: 16px; font-style: normal; font-weight: 300; line-height: 100%; letter-spacing: 0; }
 .values-copy p { margin: 0 0 20px; }
-.values-copy em { color: #aaa9a5; font-size: 10px; }
+.values-copy em { color: #70706D; font-size: 10px; }
 .values-signature { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .values-mark { flex: 0 0 auto; width: 116px; }
 .values-mark img { display: block; width: 100%; height: auto; }
@@ -290,14 +290,14 @@ h1 { margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: clam
 .account-profile { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
 .profile-photo-wrap { display: flex; flex-direction: column; align-items: center; gap: 5px; }
 .profile-photo { width: 94px; height: 94px; border-radius: 50%; object-fit: cover; }
-.profile-photo-link { color: #999c99; cursor: pointer; font-size: 11px; text-decoration: underline; }
+.profile-photo-link { color: #6D716E; cursor: pointer; font-size: 11px; text-decoration: underline; }
 .account-profile hr { width: 130px; margin: 22px 0 18px; border: 0; border-top: 1px solid #f0efed; }
 .profile-name { margin: 0 0 6px; font-family: 'Playfair Display', Georgia, serif; font-size: 17px; }
-.profile-meta, .profile-books { margin: 0; color: #999c99; font-size: 11px; }
+.profile-meta, .profile-books { margin: 0; color: #6D716E; font-size: 11px; }
 .profile-books { margin-top: 14px; color: var(--ink); }
 .account-form-card h2 { margin: 0 0 20px; font-family: 'Playfair Display', Georgia, serif; font-size: 18px; font-weight: 500; width: 100%; max-width: 322px; justify-self: center; text-align: left; }
 .account-form { display: grid; gap: 8px; width: 100%; max-width: 322px; justify-self: center; }
-.account-form label { margin-top: 3px; color: #999c99; font-size: 11px; }
+.account-form label { margin-top: 3px; color: #6D716E; font-size: 11px; }
 .account-form label span { color: #b6b8b5; }
 .account-form input:not(.visually-hidden) { height: 38px; border: 0; border-radius: 4px; padding: 0 11px; background: #edf2f5; color: var(--ink); font: inherit; font-size: 11px; outline: none; }
 .account-form input:not(.visually-hidden):focus { box-shadow: 0 0 0 2px rgba(0, 170, 112, .2); }
@@ -307,7 +307,7 @@ h1 { margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: clam
 .account-books { width: 100%; max-width: 1140px; margin-top: 26px; overflow: hidden; border-radius: 12px; background: #fff; }
 .books-table-wrap { overflow-x: auto; }
 .books-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
-.books-table th { height: 38px; padding: 0 12px; border-bottom: 1px solid #f0efed; color: #777a78; font-size: 8px; font-weight: 700; text-align: left; text-transform: uppercase; }
+.books-table th { height: 38px; padding: 0 12px; border-bottom: 1px solid #f0efed; color: #666A67; font-size: 8px; font-weight: 700; text-align: left; text-transform: uppercase; }
 .books-table tbody tr { height: 130px; }
 .books-table td { padding: 9px 12px; border-bottom: 1px solid #f0efed; color: var(--ink); font-family: 'Inter', sans-serif; font-size: 12px; font-style: normal; font-weight: 400; line-height: 100%; letter-spacing: 0; vertical-align: middle; }
 .books-table tbody tr:nth-child(even) { background: #edf4f7; }
@@ -319,8 +319,8 @@ h1 { margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: clam
 .books-table-actions a { color: #5d605e; text-decoration: underline; }
 .books-table-actions a:last-child { color: #CB2D2D; }
 .availability { display: inline-block; border-radius: 10px; padding: 5px 9px; color: #fff; font-size: 8px; white-space: nowrap; }
-.availability--available { background: #6bc8a5; }
-.availability--unavailable { background: #d47777; }
+.availability--available { background: #1f7e59; }
+.availability--unavailable { background: #a94444; }
 .empty-state { padding: 0 34px 28px; color: var(--muted); font-size: 12px; }
 
 .public-account-page { min-height: 100vh; display: flex; flex-direction: column; }
@@ -330,7 +330,7 @@ h1 { margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: clam
 .public-profile-photo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; }
 .public-profile-card hr { width: 130px; margin: 50px 0 35px; border: 0; border-top: 1px solid #f0efed; }
 .public-profile-name { margin: 0 0 7px; font-family: 'Playfair Display', Georgia, serif; font-size: 19px; }
-.public-profile-meta { margin: 0; color: #a1a4a1; font-size: 11px; }
+.public-profile-meta { margin: 0; color: #6D716E; font-size: 11px; }
 .public-profile-books { margin: 13px 0 0; color: #444744; font-size: 11px; }
 .public-profile-card .button { display: inline-flex; align-items: center; justify-content: center; width: 190px; min-height: 50px; margin-top: 32px; color: var(--green); background: #F5F3EF; border: 1px solid var(--green); text-align: center; }
 .public-profile-card .button:hover { color: #fff; background: var(--green); }
@@ -345,7 +345,7 @@ h1 { margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: clam
     display: inline-flex;
     align-items: center;
     margin-bottom: 20px;
-    color: #777a78;
+	color: #666A67;
     font-size: 12px;
 }
 .book-edit-back::before {
@@ -383,7 +383,7 @@ h1 { margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: clam
     box-shadow: 0 16px 32px rgba(34, 31, 27, 0.08);
 }
 .book-edit-photo-link {
-    color: #8a8f8b;
+	color: #666B68;
     font-size: 11px;
     text-decoration: underline;
     cursor: pointer;
@@ -395,7 +395,7 @@ h1 { margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: clam
 }
 .book-edit-form label {
     margin-top: 6px;
-    color: #868a87;
+	color: #656A67;
     font-size: 11px;
 }
 .book-edit-form input,
@@ -437,8 +437,8 @@ h1 { margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: clam
 .conversation-item__details { display: flex; flex-direction: column; gap: 4px; width: 100%; min-width: 0; }
 .conversation-item__topline { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; min-width: 0; }
 .conversation-item strong { overflow: hidden; text-overflow: ellipsis; font-size: 12px; font-weight: 500; white-space: nowrap; }
-.conversation-item small { color: #999c99; font-size: 9px; white-space: nowrap; }
-.conversation-item__preview { overflow: hidden; color: #999c99; font-size: 11px; line-height: 1.3; text-overflow: ellipsis; white-space: nowrap; }
+.conversation-item small { color: #6D716E; font-size: 9px; white-space: nowrap; }
+.conversation-item__preview { overflow: hidden; color: #6D716E; font-size: 11px; line-height: 1.3; text-overflow: ellipsis; white-space: nowrap; }
 .messages-empty { margin: 0; padding: 0 28px; color: var(--muted); font-size: 12px; }
 .conversation { display: flex; flex-direction: column; min-width: 0; padding: 28px 32px 36px; }
 .conversation__header { display: flex; align-items: center; gap: 13px; min-height: 58px; }
@@ -560,7 +560,7 @@ h1 { margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: clam
 	.conversation-item small { font-size: 12px; }
 	.conversation-item__preview { font-size: 16px; }
 	.conversation { min-height: 620px; padding: 28px 20px 46px; }
-	.conversation__back { display: inline-block; margin-bottom: 12px; color: #999c99; font-size: 14px; }
+	.conversation__back { display: inline-block; margin-bottom: 12px; color: #6D716E; font-size: 14px; }
 	.conversation__header { min-height: 58px; }
 	.conversation__header img { width: 52px; height: 52px; flex-basis: 52px; }
 	.conversation__header h2 { font-size: 16px; }

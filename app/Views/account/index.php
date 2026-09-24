@@ -16,7 +16,8 @@
         <?php if (!empty($success)): ?><p class="form-success" role="status"><?= htmlspecialchars($success, ENT_QUOTES, 'UTF-8') ?></p><?php endif; ?>
 
         <div class="account-panels">
-            <section class="account-card account-profile" aria-labelledby="profile-title">
+            <section class="account-card account-profile" aria-labelledby="profile-summary-title">
+                <h2 id="profile-summary-title" class="visually-hidden">Résumé du profil</h2>
                 <div class="profile-photo-wrap">
                     <img class="profile-photo" src="<?= htmlspecialchars(isset($user) ? ($user->getProfilePhoto() ?: '/assets/images/avatar.png') : '/assets/images/avatar.png', ENT_QUOTES, 'UTF-8') ?>" alt="Photo de profil de <?= htmlspecialchars(isset($user) ? $user->getUsername() : '', ENT_QUOTES, 'UTF-8') ?>">
                     <label class="profile-photo-link" for="profile_photo">modifier</label>

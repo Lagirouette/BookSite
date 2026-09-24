@@ -24,14 +24,14 @@ if (isset($_SESSION['user']['id'])) {
             <a href="/books">Nos livres à l'échange</a>
             <div class="header-actions">
                 <a href="<?= isset($_SESSION['user']) ? '/messages' : '/login' ?>" class="header-link header-link--messages">
-                    <img class="message-icon" src="/assets/images/text.png" alt="">
+                    <img class="message-icon" src="/assets/images/text.png" alt="Icône de messagerie">
                     <span>Messagerie</span>
                     <?php if ($unreadMessageCount > 0): ?>
                         <span class="message-count" aria-label="<?= $unreadMessageCount ?> message<?= $unreadMessageCount > 1 ? 's' : '' ?> non lu<?= $unreadMessageCount > 1 ? 's' : '' ?>"><?= $unreadMessageCount > 99 ? '99+' : $unreadMessageCount ?></span>
                     <?php endif; ?>
                 </a>
                 <a href="<?= isset($_SESSION['user']) ? '/account' : '/login' ?>" class="header-link header-link--account">
-                    <img class="account-avatar" src="<?= htmlspecialchars($_SESSION['user']['profile_photo'] ?? '/assets/images/avatar.png', ENT_QUOTES, 'UTF-8') ?>" alt="">
+                    <img class="account-avatar" src="<?= htmlspecialchars($_SESSION['user']['profile_photo'] ?? '/assets/images/avatar.png', ENT_QUOTES, 'UTF-8') ?>" alt="Avatar de l'utilisateur">
                     <span>Mon compte</span>
                 </a>
                 <?php if (isset($_SESSION['user'])): ?>

@@ -69,7 +69,7 @@ $currentUserId = isset($currentUserId) ? (int) $currentUserId : (int) ($_SESSION
                 </form>
             <?php else: ?>
                 <div class="conversation__placeholder">
-                    <p>Sélectionnez une conversation pour consulter vos messages.</p>
+                    <p id="conversation-placeholder-title">Sélectionnez une conversation pour consulter vos messages.</p>
                 </div>
             <?php endif; ?>
         </section>
