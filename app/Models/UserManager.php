@@ -10,7 +10,7 @@ class UserManager extends AbstractEntityManager
      */
     public function findById(int $id): ?User
     {
-        $sql = 'SELECT id, username, email, profile_photo, created_at FROM users WHERE id = :id LIMIT 1';
+        $sql = 'SELECT id, username, email, profile_photo_mime, created_at FROM users WHERE id = :id LIMIT 1';
         $result = $this->db->query($sql, ['id' => $id]);
         $user = $result->fetch();
 
@@ -34,7 +34,7 @@ class UserManager extends AbstractEntityManager
      */
     public function findByEmail(string $email): ?User
     {
-        $sql = 'SELECT id, username, email, password, profile_photo FROM users WHERE email = :email LIMIT 1';
+        $sql = 'SELECT id, username, email, password, profile_photo_mime FROM users WHERE email = :email LIMIT 1';
         $result = $this->db->query($sql, ['email' => $email]);
         $user = $result->fetch();
 
@@ -56,7 +56,7 @@ class UserManager extends AbstractEntityManager
         return (int) $this->db->getPDO()->lastInsertId();
     }
 
-    public function updateProfile(int $id, string $username, string $email, ?string $password, ?string $profilePhoto): void
+    public function updateProfile(int $id, string $username, string $email, ?string $password, ?string $profilePhoto, ?string $profilePhotoMime): void
     {
         $fields = ['username = :username', 'email = :email'];
         $params = ['id' => $id, 'username' => $username, 'email' => $email];
@@ -66,12 +66,25 @@ class UserManager extends AbstractEntityManager
             $params['password'] = password_hash($password, PASSWORD_DEFAULT);
         }
 
-        if ($profilePhoto !== null) {
-            $fields[] = 'profile_photo = :profile_photo';
+        if ($profilePhoto !== null && $profilePhotoMime !== null) {
+            $fields[] = 'profile_photo = :profile_photo, profile_photo_mime = :profile_photo_mime';
             $params['profile_photo'] = $profilePhoto;
+            $params['profile_photo_mime'] = $profilePhotoMime;
         }
 
         $sql = 'UPDATE users SET ' . implode(', ', $fields) . ' WHERE id = :id';
         $this->db->query($sql, $params);
+    }
+
+    public function getProfilePhotoData(int $id): ?array
+    {
+        $sql = 'SELECT profile_photo, profile_photo_mime FROM users WHERE id = :id LIMIT 1';
+        $photo = $this->db->query($sql, ['id' => $id])->fetch();
+
+        if (!$photo || $photo['profile_photo'] === null || $photo['profile_photo_mime'] === null) {
+            return null;
+        }
+
+        return $photo;
     }
 }

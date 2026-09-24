@@ -30,7 +30,7 @@
             <section class="account-card account-form-card" aria-labelledby="profile-title">
                 <h2 id="profile-title">Vos informations personnelles</h2>
                 <form method="post" enctype="multipart/form-data" class="account-form">
-                    <input id="profile_photo" name="profile_photo" type="file" accept="image/jpeg,image/png,image/webp" class="visually-hidden">
+                    <input id="profile_photo" name="profile_photo" type="file" accept="image/jpeg,image/png,image/webp" class="visually-hidden" onchange="this.form.requestSubmit()">
                     <label for="email">Adresse email</label>
                     <input id="email" name="email" type="email" required value="<?= htmlspecialchars(isset($user) ? $user->getEmail() : '', ENT_QUOTES, 'UTF-8') ?>">
                     <label for="password">Mot de passe</label>

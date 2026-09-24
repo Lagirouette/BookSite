@@ -34,6 +34,7 @@ class AccountController
             $email = trim($_POST['email'] ?? '');
             $password = $_POST['password'] ?? '';
             $profilePhoto = null;
+            $profilePhotoMime = null;
 
             if (mb_strlen($username) < 2) {
                 $error = 'Le pseudo doit contenir au moins 2 caractères.';
@@ -42,16 +43,16 @@ class AccountController
             } elseif ($password !== '' && strlen($password) < 8) {
                 $error = 'Le mot de passe doit contenir au moins 8 caractères.';
             } elseif (!empty($_FILES['profile_photo']['name'])) {
-                $profilePhoto = $this->storeProfilePhoto($_FILES['profile_photo'], $error);
+                [$profilePhoto, $profilePhotoMime] = $this->readProfilePhoto($_FILES['profile_photo'], $error);
             }
 
             if ($error === null) {
                 try {
-                    $userManager->updateProfile((int) $user->getId(), $username, $email, $password, $profilePhoto);
+                    $userManager->updateProfile((int) $user->getId(), $username, $email, $password, $profilePhoto, $profilePhotoMime);
                     $_SESSION['user']['username'] = $username;
                     $_SESSION['user']['email'] = $email;
                     if ($profilePhoto !== null) {
-                        $_SESSION['user']['profile_photo'] = $profilePhoto;
+                        $_SESSION['user']['profile_photo'] = '/profile-photo/' . $user->getId();
                     }
                     $user = $userManager->findById((int) $user->getId());
                     $success = 'Vos informations ont été enregistrées.';
@@ -64,27 +65,26 @@ class AccountController
         require __DIR__ . '/../Views/account/index.php';
     }
 
-    private function storeProfilePhoto(array $file, ?string &$error): ?string
+    private function readProfilePhoto(array $file, ?string &$error): array
     {
         if ($file['error'] !== UPLOAD_ERR_OK || $file['size'] > 2 * 1024 * 1024) {
             $error = 'La photo doit peser moins de 2 Mo.';
-            return null;
+            return [null, null];
         }
 
         $mime = (new \finfo(FILEINFO_MIME_TYPE))->file($file['tmp_name']);
         $extensions = ['image/jpeg' => 'jpg', 'image/png' => 'png', 'image/webp' => 'webp'];
         if (!isset($extensions[$mime])) {
             $error = 'La photo doit être au format JPG, PNG ou WEBP.';
-            return null;
+            return [null, null];
         }
 
-        $filename = 'profile-' . bin2hex(random_bytes(12)) . '.' . $extensions[$mime];
-        $destination = __DIR__ . '/../../assets/images/' . $filename;
-        if (!move_uploaded_file($file['tmp_name'], $destination)) {
+        $contents = file_get_contents($file['tmp_name']);
+        if ($contents === false) {
             $error = 'La photo n’a pas pu être enregistrée.';
-            return null;
+            return [null, null];
         }
 
-        return '/assets/images/' . $filename;
+        return [$contents, $mime];
     }
 }

@@ -5,14 +5,22 @@ class MessageManager extends AbstractEntityManager
     public function findConversationUsers(int $userId): array
     {
         $sql = <<<'SQL'
-            SELECT users.id, users.username, users.profile_photo, MAX(messages.created_at) AS last_message_at
+            SELECT users.id, users.username, users.profile_photo_mime, MAX(messages.created_at) AS last_message_at,
+                (
+                    SELECT latest_message.content
+                    FROM messages AS latest_message
+                    WHERE (latest_message.sender_id = :user_id_latest_sender AND latest_message.receiver_id = users.id)
+                       OR (latest_message.sender_id = users.id AND latest_message.receiver_id = :user_id_latest_receiver)
+                    ORDER BY latest_message.created_at DESC, latest_message.id DESC
+                    LIMIT 1
+                ) AS last_message
             FROM users
             INNER JOIN messages ON users.id = CASE
                 WHEN messages.sender_id = :user_id_sender THEN messages.receiver_id
                 ELSE messages.sender_id
             END
             WHERE messages.sender_id = :user_id_receiver OR messages.receiver_id = :user_id_recipient
-            GROUP BY users.id, users.username, users.profile_photo
+            GROUP BY users.id, users.username, users.profile_photo_mime
             ORDER BY last_message_at DESC
         SQL;
 
@@ -20,6 +28,8 @@ class MessageManager extends AbstractEntityManager
             'user_id_sender' => $userId,
             'user_id_receiver' => $userId,
             'user_id_recipient' => $userId,
+                'user_id_latest_sender' => $userId,
+                'user_id_latest_receiver' => $userId,
         ])->fetchAll();
     }
 

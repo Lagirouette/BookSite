@@ -61,6 +61,12 @@ class Router
             return;
         }
 
+        if (preg_match('#^/profile-photo/(\d+)$#', $path, $matches)) {
+            $controller = new \App\Controllers\ProfilePhotoController();
+            $controller->show((int) $matches[1]);
+            return;
+        }
+
         if ($path === '/messages') {
             $controller = new \App\Controllers\MessageController();
             $controller->index();

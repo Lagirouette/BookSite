@@ -27,10 +27,13 @@ $currentUserId = isset($currentUserId) ? (int) $currentUserId : (int) ($_SESSION
             <?php else: ?>
                 <?php foreach ($conversations as $conversation): ?>
                     <a class="conversation-item <?= (int) $conversation['id'] === $contactId ? 'conversation-item--active' : '' ?>" href="/messages?with=<?= (int) $conversation['id'] ?>">
-                        <img src="<?= htmlspecialchars($conversation['profile_photo'] ?: '/assets/images/avatar.png', ENT_QUOTES, 'UTF-8') ?>" alt="">
+                        <img src="<?= htmlspecialchars($conversation['profile_photo_mime'] ? '/profile-photo/' . (int) $conversation['id'] : '/assets/images/avatar.png', ENT_QUOTES, 'UTF-8') ?>" alt="">
                         <span class="conversation-item__details">
-                            <strong><?= htmlspecialchars($conversation['username'], ENT_QUOTES, 'UTF-8') ?></strong>
-                            <small><?= date('d/m/Y H:i', strtotime($conversation['last_message_at'])) ?></small>
+                            <span class="conversation-item__topline">
+                                <strong><?= htmlspecialchars($conversation['username'], ENT_QUOTES, 'UTF-8') ?></strong>
+                                <small><?= date('d/m/Y H:i', strtotime($conversation['last_message_at'])) ?></small>
+                            </span>
+                            <span class="conversation-item__preview"><?= htmlspecialchars($conversation['last_message'] ?? '', ENT_QUOTES, 'UTF-8') ?></span>
                         </span>
                     </a>
                 <?php endforeach; ?>
@@ -47,7 +50,12 @@ $currentUserId = isset($currentUserId) ? (int) $currentUserId : (int) ($_SESSION
                 <div class="conversation__messages">
                     <?php foreach ($messages as $message): ?>
                         <article class="message <?= (int) $message['sender_id'] === $currentUserId ? 'message--sent' : 'message--received' ?>">
-                            <time datetime="<?= htmlspecialchars($message['created_at'], ENT_QUOTES, 'UTF-8') ?>"><?= date('d/m H:i', strtotime($message['created_at'])) ?></time>
+                            <div class="message__meta">
+                                <?php if ((int) $message['sender_id'] !== $currentUserId): ?>
+                                    <img class="message__avatar" src="<?= htmlspecialchars($contact->getProfilePhoto() ?: '/assets/images/avatar.png', ENT_QUOTES, 'UTF-8') ?>" alt="">
+                                <?php endif; ?>
+                                <time datetime="<?= htmlspecialchars($message['created_at'], ENT_QUOTES, 'UTF-8') ?>"><?= date('d/m H:i', strtotime($message['created_at'])) ?></time>
+                            </div>
                             <p><?= nl2br(htmlspecialchars($message['content'], ENT_QUOTES, 'UTF-8')) ?></p>
                         </article>
                     <?php endforeach; ?>

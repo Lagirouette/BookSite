@@ -8,7 +8,7 @@ class User extends AbstractEntity
     private string $username = '';
     private string $email = '';
     private string $password = '';
-    private string $profile_photo = '';
+    private string $profile_photo_mime = '';
     private string $created_at = '';
 
     /**
@@ -54,14 +54,14 @@ class User extends AbstractEntity
         return $this->password;
     }
 
-    public function setProfilePhoto(?string $profilePhoto): void
+    public function setProfilePhotoMime(?string $profilePhotoMime): void
     {
-        $this->profile_photo = $profilePhoto ?? '';
+        $this->profile_photo_mime = $profilePhotoMime ?? '';
     }
 
     public function getProfilePhoto(): string
     {
-        return $this->profile_photo;
+        return $this->profile_photo_mime !== '' ? '/profile-photo/' . $this->getId() : '';
     }
 
     public function setCreatedAt(?string $createdAt): void
