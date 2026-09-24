@@ -2,6 +2,22 @@
 
 class MessageManager extends AbstractEntityManager
 {
+    public function countUnread(int $userId): int
+    {
+        $sql = 'SELECT COUNT(*) FROM messages WHERE receiver_id = :user_id AND viewed = 0';
+
+        return (int) $this->db->query($sql, ['user_id' => $userId])->fetchColumn();
+    }
+
+    public function markConversationAsViewed(int $userId, int $contactId): void
+    {
+        $sql = 'UPDATE messages SET viewed = 1 WHERE receiver_id = :user_id AND sender_id = :contact_id AND viewed = 0';
+        $this->db->query($sql, [
+            'user_id' => $userId,
+            'contact_id' => $contactId,
+        ]);
+    }
+
     public function findConversationUsers(int $userId): array
     {
         $sql = <<<'SQL'
@@ -36,7 +52,7 @@ class MessageManager extends AbstractEntityManager
     public function findConversation(int $userId, int $contactId): array
     {
         $sql = <<<'SQL'
-            SELECT id, sender_id, receiver_id, content, created_at
+            SELECT id, sender_id, receiver_id, content, created_at, viewed
             FROM messages
             WHERE (sender_id = :user_id_sender AND receiver_id = :contact_id_receiver)
                OR (sender_id = :contact_id_sender AND receiver_id = :user_id_receiver)
@@ -53,7 +69,7 @@ class MessageManager extends AbstractEntityManager
 
     public function create(int $senderId, int $receiverId, string $content): void
     {
-        $sql = 'INSERT INTO messages (sender_id, receiver_id, content) VALUES (:sender_id, :receiver_id, :content)';
+        $sql = 'INSERT INTO messages (sender_id, receiver_id, content, viewed) VALUES (:sender_id, :receiver_id, :content, 0)';
         $this->db->query($sql, [
             'sender_id' => $senderId,
             'receiver_id' => $receiverId,

@@ -64,6 +64,7 @@ a:hover { color: var(--green-dark); }
 .header-link { color: #5d605e; font-size: 14px; white-space: nowrap; }
 .header-link--messages { display: inline-flex; align-items: center; gap: 6px; }
 .message-icon { width: 18px; height: 18px; object-fit: contain; }
+.message-count { display: inline-flex; align-items: center; justify-content: center; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 50%; color: #fff; background: var(--ink); font-size: 10px; font-weight: 700; line-height: 1; }
 .header-link--account { display: inline-flex; align-items: center; gap: 6px; }
 .account-avatar { width: 14px; height: 14px; border-radius: 50%; object-fit: cover; }
 .header-link--strong { color: var(--ink); font-weight: 700; }

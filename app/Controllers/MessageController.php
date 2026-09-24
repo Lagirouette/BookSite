@@ -26,6 +26,10 @@ class MessageController
             $contactId = 0;
         }
 
+        if ($contact) {
+            $messageManager->markConversationAsViewed($currentUserId, $contact->getId());
+        }
+
         $error = null;
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $content = trim($_POST['content'] ?? '');
