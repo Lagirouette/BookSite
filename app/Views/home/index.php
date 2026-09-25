@@ -56,7 +56,7 @@
             <a class="button button--outline" href="/books">Voir tous les livres</a>
         </section>
 
-        <div class="values-banner" aria-label="Bibliothèque remplie de livres"></div>
+        <div class="values-banner" role="img" aria-label="Bibliothèque remplie de livres"></div>
 
         <section class="values section-white" aria-labelledby="values-title">
             <div class="values-content">
