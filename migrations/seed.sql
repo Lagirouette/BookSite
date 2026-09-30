@@ -30,12 +30,13 @@ INSERT INTO books (id, user_id, title, author, image, description, status) VALUE
     (7, 3, 'Le Comte de Monte-Cristo', 'Alexandre Dumas', NULL,
         'Version en deux tomes, pages en bon état.', 'unavailable');
 
-INSERT INTO messages (id, sender_id, receiver_id, content) VALUES
-    (1, 2, 1, 'Bonjour Alice, votre exemplaire du Petit Prince est-il toujours disponible ?'),
-    (2, 1, 2, 'Bonjour Bob, oui, il est toujours disponible. Quel livre proposez-vous en échange ?'),
-    (3, 2, 1, 'Je peux vous proposer 1984, qui est aussi dans ma bibliothèque.'),
-    (4, 3, 1, 'Bonjour Alice, je suis intéressée par L''Étranger. Souhaitez-vous en discuter ?'),
-    (5, 1, 3, 'Bonjour Claire, avec plaisir. Votre exemplaire de La Peste m''intéresse également.'),
-    (6, 1, 2, 'Bonjour Bob, je vous confirme que le livre est toujours disponible.');
+INSERT INTO messages (id, sender_id, receiver_id, content, viewed) VALUES
+    (1, 2, 1, 'Bonjour Alice, votre exemplaire du Petit Prince est-il toujours disponible ?', 1),
+    (2, 1, 2, 'Bonjour Bob, oui, il est toujours disponible. Quel livre proposez-vous en échange ?', 1),
+    (3, 2, 1, 'Je peux vous proposer 1984, qui est aussi dans ma bibliothèque.', 0),
+    (4, 3, 1, 'Bonjour Alice, je suis intéressée par L''Étranger. Souhaitez-vous en discuter ?', 0),
+    (5, 1, 3, 'Bonjour Claire, avec plaisir. Votre exemplaire de La Peste m''intéresse également.', 1),
+    (6, 1, 2, 'Bonjour Bob, je vous confirme que le livre est toujours disponible.', 0),
+    (7, 3, 2, 'Je suis également intéressée par votre exemplaire de 1984. Est-il toujours disponible ?', 0);
 
 COMMIT;
