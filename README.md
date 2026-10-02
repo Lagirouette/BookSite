@@ -18,7 +18,7 @@ Fichiers importants:
 - `public/index.php` : point d'entrée
 - `app/router/Autoloader.php` : autoload simple
 - `app/router/Controller.php` : classe de base pour les contrôleurs
-- `config/database.php` : paramètres de connexion
+- `config/config.php` : paramètres de connexion
 - `migrations/schema.sql` : schéma initial (utilisateurs, livres, messages)
 - `migrations/seed.sql` : données de démonstration pour commencer
 
