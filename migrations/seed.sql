@@ -1,9 +1,5 @@
 -- Données de démonstration pour TomTroc (MVP)
 -- À exécuter après migrations/schema.sql.
--- Comptes de test :
--- alice@example.com / tomtroc123
--- bob@example.com / lecteur123
--- claire@example.com / bibliophile123
 
 SET NAMES utf8mb4;
 
